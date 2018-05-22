@@ -1,44 +1,35 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import React, {Component} from 'react';
+import { StyleSheet, View} from 'react-native';
 
-export default class App extends React.Component {
+import PlaceInput from './src/components/PlaceInput/PlaceInput';
+import PlaceList from './src/components/PlaceList/PlaceList';
+
+export default class App extends Component {
+ //variables
   state = {
-    placeName : "",
     places: []
   };
 
+  //to set display input in textinput
   placeNameChangedHandler = (val) => {
     this.setState({
       placeName: val
     });
   };
-  
-  placeSubmitHandler = () =>{
-    if(this.state.placeName.trim() === ""){
-      return;
-    }
-
+  //to save input in array
+  placeAddedHandler = placeName =>{
     this.setState(prevState => {
       return{
-        places: prevState.places.concat(prevState.placeName)
+        places: prevState.places.concat(placeName)
       };
     });
   };
 
   render() {
-    const placesOutput = this.state.places.map((place, i) => (
-      <Text key={i}>{place}</Text>
-    ));
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TextInput style = {styles.placeInput}
-            value = {this.state.placeName}
-            onChangeText = {this.placeNameChangedHandler} />
-          
-          <Button title="Add" style={styles.placeButton} onPress = {this.placeSubmitHandler} />
-        </View>
-        <View>{placesOutput}</View>
+        <PlaceInput onPlaceAdded = {this.placeAddedHandler} />
+        <PlaceList places = {this.state.places} />
       </View>
       
     );
@@ -52,23 +43,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
-  },
-
-  inputContainer:{
-   // flex: 1,
-   width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-
-  placeInput:{
-  //  borderColor:"black", 
-  //  borderWidth: 1,
-    width: "70%"
-  },
-
-  placeButton:{
-    width: "30%"
   }
 });
