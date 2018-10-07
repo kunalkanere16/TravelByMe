@@ -19,7 +19,9 @@ class PlaceInput extends Component{
         if(this.state.placeName.trim() === ""){
             return;
         }
-
+        //onPlaceAdded is property which will be fired onPress
+        //This is property can be used by any Component that implements 
+        //PlaceInput component
         this.props.onPlaceAdded(this.state.placeName);
     };
     render(){
@@ -39,16 +41,18 @@ class PlaceInput extends Component{
     }
 }
 
-const placeInput = (props) => (
+/*const placeInput = (props) => (
     <View style={styles.inputContainer}>
         <TextInput style = {styles.placeInput}
         value = {props.placeName}
         onChangeText = {this.placeNameChangedHandler} />
         
-        <Button title="Add" style={styles.placeButton} onPress = {this.placeSubmitHandler} />
+        <Button title="Add" 
+            style={styles.placeButton} 
+            onPress = {this.placeSubmitHandler} />
     </View>
 );
-
+*/
 const styles = StyleSheet.create({
     inputContainer:{
         // flex: 1,

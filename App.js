@@ -10,12 +10,7 @@ export default class App extends Component {
     places: []
   };
 
-  //to set display input in textinput
-  placeNameChangedHandler = (val) => {
-    this.setState({
-      placeName: val
-    });
-  };
+
   //to save input in array
   placeAddedHandler = placeName =>{
     this.setState(prevState => {
