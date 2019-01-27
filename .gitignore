@@ -6,6 +6,9 @@
 # dependencies
 /node_modules
 
+# generated src code
+/android
+/ios
 # misc
 .env.local
 .env.development.local
